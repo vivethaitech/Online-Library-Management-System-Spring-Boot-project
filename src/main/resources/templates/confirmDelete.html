@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Confirm Delete</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete this book?</h1>
+    <!-- Displaying the title correctly using Thymeleaf -->
+    <p th:text="'Title: ' + ${title}"></p>
+    <form th:action="@{/book/delete/{title}(title=${title})}" method="post">
+        <input type="submit" value="Yes, Delete">
+    </form>
+    <a th:href="@{/book/get}">Cancel</a>
+</body>
+</html>

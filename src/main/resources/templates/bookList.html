@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book List</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body><center>
+    <h1>Book List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Year</th>
+                <th>Available</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="books : ${books}">
+                <td th:text="${books.title}">Title</td>
+                <td th:text="${books.author}">Author</td>
+                <td th:text="${books.publisher}">Publisher</td>
+                <td th:text="${books.publishedYear}">Year</td>
+                <td th:text="${books.available}">Available</td>
+                <td>
+                    <!-- Ensure correct path and placeholder substitution -->
+                    <a th:href="@{/book/update/{title}(title=${books.title})}">Update</a>
+                    <a th:href="@{/book/delete/{title}(title=${books.title})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+		
+    </table><br><br>
+	<a href="/book/add">Add book</a>
+	</center>
+</body>
+</html>

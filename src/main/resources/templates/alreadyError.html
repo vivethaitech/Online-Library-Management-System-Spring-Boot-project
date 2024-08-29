@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error</title>
+</head>
+<body>
+    <h1>Book you entered already available</h1>
+    <p th:text="${errorMessage}">Book already availabe</p>
+	<br><br>
+    <a href="/book/add">Try again to new book</a>
+</body>
+</html>
