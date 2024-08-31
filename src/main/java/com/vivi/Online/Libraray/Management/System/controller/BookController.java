@@ -45,7 +45,7 @@ public class BookController {
         logger.info("Fetching all books");
         List<Book> books = service.getBooks();
         model.addAttribute("books", books);
-        return "bookList";
+        return "library/bookList";
     }
 
 	// to add data
@@ -55,7 +55,7 @@ public class BookController {
 	public String bookForm(Model model) {
 		BookModel book = new BookModel();
 		model.addAttribute("book", book);
-		return "BookForm";
+		return "library/BookForm";
 	}
 
 	
@@ -63,16 +63,16 @@ public class BookController {
 	    public String addBook(@ModelAttribute @Valid BookModel bookModel,BindingResult result,Model model) {
 	    	if(result.hasErrors()) {
 	    		model.addAttribute("errors", result.getAllErrors());
-	    		return "BookFormError";
+	    		return "library/BookFormError";
 	    	}
 	    	Book book = new Book(bookModel.getTitle(),bookModel.getAuthor(), bookModel.getAvailable(),bookModel.getPublisher(),bookModel.getPublishedYear());
 	        logger.info("Adding book: {}", book.getTitle());
 	        try {
 	            service.addBooks(book);
-	            return "success";
+	            return "library/success";
 	        } catch (AlreadyBookExistException e) {
 	            logger.error("Book already exists: {}", book.getTitle());
-	            return "alreadyError";
+	            return "library/alreadyError";
 	        }
 	    }
 
@@ -84,10 +84,10 @@ public class BookController {
         Book book = service.findBookByTitle(title);
         if (book == null) {
             logger.error("Book not found: {}", title);
-            return "error";
+            return "library/error";
         }
         model.addAttribute("book", book);
-        return "updateBookForm";
+        return "library/updateBookForm";
     }
 
     @PostMapping("/update/{title}")
@@ -99,7 +99,7 @@ public class BookController {
             return "redirect:/book/get";
         } catch (BookNotFoundException ex) {
             logger.error("Book not found: {}", title);
-            return "error";
+            return "library/error";
         }
     }
 	  //to delete data
@@ -110,7 +110,7 @@ public class BookController {
 	  public String deleteBook(@PathVariable String title,Model model) 
 	  { 
 	  model.addAttribute("title",title); 
-	  return "confirmDelete"; 
+	  return "library/confirmDelete"; 
 	  }
 	   
 	@PostMapping("/delete/{title}")
@@ -122,7 +122,7 @@ public class BookController {
             return "redirect:/book/get";
         } catch (Exception ex) {
             logger.error("Error deleting book: {}", title, ex);
-            return "error";
+            return "library/error";
         }
 }
 }
