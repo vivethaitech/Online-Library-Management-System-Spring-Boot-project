@@ -30,6 +30,10 @@ public class Book {
 	public Book() {
 	}
 
+	public Book(String title2, String author2, Object publisher2, Integer publishedYear2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getTitle() {
 		return title;
 	}

@@ -9,7 +9,11 @@ import org.springframework.context.annotation.ComponentScan;
 	    "com.vivi.Online.Libraray.Management.System.controller",
 	    "com.vivi.Online.Libraray.Management.System.swagger",
 	    "com.vivi.Online.Libraray.Management.System.service",
-	    "com.vivi.Online.Libraray.Management.System.security"
+	    "com.vivi.Online.Libraray.Management.System.security",
+"com.vivi.Online.Libraray.Management.System.ExceptionHandling",
+"com.vivi.Online.Libraray.Management.System.model",
+"com.vivi.Online.Libraray.Management.System.Entity",
+"com.vivi.Online.Libraray.Management.System.repository"
 	})
 public class OnlineLibrarayManagementSystemApplication {
 

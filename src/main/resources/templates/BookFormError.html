@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Form Error</title>
+</head>
+<body>
+    <h2>Error Adding Book</h2>
+    
+    <!-- Display general errors -->
+    <div th:if="${alreadyError != null}">
+        <p th:text="${alreadyError}" style="color:red;"></p>
+    </div>
+    
+    <!-- Display validation errors -->
+    <div th:if="${errors != null}">
+        <ul>
+            <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+        </ul>
+    </div>
+    
+    <a th:href="@{/add}">Go back to form</a>
+</body>
+</html>

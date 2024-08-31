@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.vivi.Online.Libraray.Management.System.Entity.Book;
 import com.vivi.Online.Libraray.Management.System.ExceptionHandling.AlreadyBookExistException;
 import com.vivi.Online.Libraray.Management.System.ExceptionHandling.BookNotFoundException;
+import com.vivi.Online.Libraray.Management.System.model.BookModel;
 import com.vivi.Online.Libraray.Management.System.service.BookService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/book")
@@ -50,14 +53,19 @@ public class BookController {
 	@GetMapping("/add")
 	@PreAuthorize("hasRole('ROLE_INCHARGE')")
 	public String bookForm(Model model) {
-		Book book = new Book();
+		BookModel book = new BookModel();
 		model.addAttribute("book", book);
 		return "BookForm";
 	}
 
 	
 	    @PostMapping("/post")
-	    public String addBook(@ModelAttribute Book book) {
+	    public String addBook(@ModelAttribute @Valid BookModel bookModel,BindingResult result,Model model) {
+	    	if(result.hasErrors()) {
+	    		model.addAttribute("errors", result.getAllErrors());
+	    		return "BookFormError";
+	    	}
+	    	Book book = new Book(bookModel.getTitle(),bookModel.getAuthor(), bookModel.getAvailable(),bookModel.getPublisher(),bookModel.getPublishedYear());
 	        logger.info("Adding book: {}", book.getTitle());
 	        try {
 	            service.addBooks(book);
