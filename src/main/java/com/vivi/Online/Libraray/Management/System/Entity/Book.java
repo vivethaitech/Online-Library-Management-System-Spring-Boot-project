@@ -1,9 +1,12 @@
 package com.vivi.Online.Libraray.Management.System.Entity;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Book {
@@ -29,6 +32,9 @@ public class Book {
 
 	public Book() {
 	}
+	
+    @ManyToMany(mappedBy = "books")
+    private Set<UserEntity> users;
 
 	public Book(String title2, String author2, Object publisher2, Integer publishedYear2) {
 		// TODO Auto-generated constructor stub
