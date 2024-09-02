@@ -42,6 +42,8 @@ public class SecurityConfiguration {
 		                .requestMatchers("/book/add", "/book/post").hasRole("INCHARGE")
 		                .requestMatchers("/book/update/**").hasRole("ADMIN")
 		                .requestMatchers("/book/delete/**").hasRole("MANAGER")
+		                .requestMatchers("/user/get/").hasRole("INCHARGE")
+		                .requestMatchers("/book/post/").hasRole("INCHARGE")
 		                .anyRequest().authenticated()
 				       .and()
 				       .formLogin()

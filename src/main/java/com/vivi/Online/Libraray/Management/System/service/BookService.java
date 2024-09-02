@@ -17,14 +17,13 @@ public class BookService {
 	public BookService(BookRepository repo) {
 		this.repo=repo;
 	}
+	
+	//get all book
 	public List<Book> getBooks() {
 	
 		return repo.findAll();
 	}
-	public Book findBookByTitle(String title) {
-	    return repo.findByTitle(title);
-	          
-	}
+
 	public String addBooks(Book book) {
 		List<Book> list=repo.findAll();
 		for(Book books: list)
@@ -33,6 +32,10 @@ public class BookService {
 			}
 		repo.save(book);
 		return "Book Successfully added";
+	}
+	public Book findBookByTitle(String title) {
+	    return repo.findByTitle(title);
+	          
 	}
 	public String updateBookByTitle(String title, Book book) {
 	    Book existingBook = repo.findByTitle(title);
