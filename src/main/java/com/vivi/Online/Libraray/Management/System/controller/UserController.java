@@ -53,7 +53,8 @@ public class UserController {
     	
     	try {
 		service.addUser(user);
-		return "user/bookAdded";
+		model.addAttribute("user", user);
+		return "user/userAdded";
     	} catch(EmailAlreadyExist emailExist) {
     		return "library/error";
     	}
