@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head><title>Update User</title>
+	<link rel="stylesheet" th:href="@{/css/form.css}">
+	</head>
+	<body>
+		<h1>update user</h1>
+		<form th:action="@{/user/update/{phoneNo}(phoneNo=${users.phoneNo})}" th:object="${users}" method="post">
+		    <label for="name">Name</label>
+		    <input type="text" th:field="*{name}"><br><br>
+		    
+		    <label>Gender</label>
+		    <div class="radio-group">
+		        <input type="radio" th:field="*{gender}" value="Male" id="male">
+		        <label for="male">Male</label>
+		        
+		        <input type="radio" th:field="*{gender}" value="Female" id="female">
+		        <label for="female">Female</label>
+		        
+		        <input type="radio" th:field="*{gender}" value="Other" id="other">
+		        <label for="other">Other</label>
+		    </div>
+		    
+		    <label for="email">Email</label>
+		    <input type="text" th:field="*{email}"><br><br>
+		    
+		    <label for="password">Password</label>
+		    <input type="text" th:field="*{password}"><br><br>
+		    
+		    <label for="phoneNumber">Phone Number</label>
+		    <input type="number" th:field="*{phoneNo}"><br><br>
+		    
+		  <center>  <input type="submit" value="Add User">  </center>
+		</form>
+		</body>
+		</htnl>
+		

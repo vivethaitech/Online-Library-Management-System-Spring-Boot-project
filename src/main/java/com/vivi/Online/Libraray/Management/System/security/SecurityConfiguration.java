@@ -48,7 +48,7 @@ public class SecurityConfiguration {
 				       .and()
 				       .formLogin()
 				       .and()
-				       .logout().logoutSuccessUrl("/book/get")
+				       .logout().logoutSuccessUrl("/")
 				       .and()
 				       .httpBasic();
 				       return http.build();

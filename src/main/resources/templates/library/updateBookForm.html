@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Update Book</title>
+	<link rel="stylesheet" th:href="@{/css/form.css}">
 </head>
 <body>
     <h1>Update Book</h1>
@@ -19,10 +20,12 @@
         <input type="text" id="publishedYear" th:field="*{publishedYear}" />
         
         <label for="available">Available:</label>
-        <input type="checkbox" id="available" th:field="*{available}" />
+        <input type="checkbox" id="available" th:field="*{available}" /><br><br>
         
-        <input type="submit" value="Update" />
+      <center>  <input type="submit" value="Update" /></center>
+	  <br><br>
+	  <center>
+	      <a href="/book/get">Back to Book List</a></center>
     </form>
-    <a href="/book/get">Back to Book List</a>
 </body>
 </html>

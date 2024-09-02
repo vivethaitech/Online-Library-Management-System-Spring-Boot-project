@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Add Book</title>
+	<link rel="stylesheet" th:href="@{/css/form.css}">
 </head>
 <body>
     <h1>Add a New Book</h1>
@@ -21,7 +22,7 @@
         <label for="publishedYear">Published Year:</label>
         <input type="number" id="publishedYear" th:field="*{publishedYear}" /><br><br>
 
-        <input type="submit" value="Add Book" />
+      <center>  <input type="submit" value="Add Book" /></center>
     </form>
 </body>
 </html>

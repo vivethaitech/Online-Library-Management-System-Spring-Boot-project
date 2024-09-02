@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9; /* Light background color for the page */
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    max-width: 600px; /* Restricting form width */
+    margin: 0 auto; /* Center the form on the page */
+    padding: 20px; /* Padding inside the form */
+    border: 1px solid #ddd; /* Border similar to table style */
+    border-radius: 8px; /* Rounded corners for the form */
+    background-color: #fff; /* White background for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 8px; /* Space between label and input */
+    font-weight: bold; /* Bold text for labels */
+}
+
+input[type="text"],
+input[type="number"],
+input[type="submit"] {
+    font-size: 16px; /* Uniform font size for inputs */
+    padding: 8px; /* Padding inside input fields */
+    margin-bottom: 15px; /* Space below input fields */
+    width: 100%; /* Full width for text and number inputs */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+.radio-group {
+    display: flex; /* Flex display for radio buttons */
+    gap: 15px; /* Space between radio groups */
+    align-items: center; /* Center align radio buttons vertically */
+    margin-bottom: 15px; /* Space below the radio group */
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 5px; /* Space between radio button and label */
+}
+
+.radio-group label {
+    font-weight: normal; /* Normal font weight for radio button labels */
+}
+
+input[type="submit"] {
+    width: auto; /* Auto width for submit button */
+    background-color: #007bff; /* Blue background for button */
+    color: #fff; /* White text for button */
+    border: none; /* No border for button */
+    border-radius: 4px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor for button */
+    text-transform: uppercase; /* Uppercase text for button */
+    padding: 10px 20px; /* Padding for button */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+}
+
+br {
+    display: none; /* Remove line breaks */
+}

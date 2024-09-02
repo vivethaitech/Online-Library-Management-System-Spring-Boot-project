@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,8 +31,8 @@ public class UserController {
 	//get user--------------------
 	@GetMapping("/get")
 	public String getBooks(Model model) {
-		List<UserEntity> user=service.getUser();
-		model.addAttribute("user", user);
+		List<UserEntity> users=service.getUser();
+		model.addAttribute("users", users);
 		return "user/userList";
 	}
 	
@@ -59,4 +60,27 @@ public class UserController {
     		return "library/error";
     	}
 	}
+    
+    //update user
+    @GetMapping("/update/{phoneNo}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String updateUserForm(@PathVariable String phoneNo, Model model) {
+    	UserEntity user = service.findByPhoneNo(phoneNo);
+    	if(user==null) {
+    		return "library/error";		
+    	}
+    	model.addAttribute("users", user);
+    	return "user/updateForm";
+    }
+    
+    @PostMapping("/update/{phoneNo}")
+    public String updateUser(@PathVariable String phoneNo, @ModelAttribute UserEntity user ) {
+    	try {
+    		service.updateBook(phoneNo,user);
+    		return "redirect:/user/get";
+    	}
+    	catch (Exception e){
+    		return "library/error";
+    	}
+    }
 }

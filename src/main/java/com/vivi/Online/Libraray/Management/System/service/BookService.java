@@ -52,12 +52,12 @@ public class BookService {
 	}
 
 
-	  public void deleteBookByTitle(String title) {
+	  public String deleteBookByTitle(String title) {
 	        List<Book> books = repo.findAll();
 	        for (Book book : books) {
 	            if (book.getTitle().equals(title)) {
 	                repo.delete(book);
-	                return;
+	                return "book deleted successfully";
 	            }
 	        }
 	        throw new BookNotFoundException("Book with title '" + title + "' not found");

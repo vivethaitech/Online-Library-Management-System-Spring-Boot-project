@@ -32,6 +32,23 @@ public class UserService {
 		return"Book added successfully";
 	}
 	
-	
+	public UserEntity findByPhoneNo(String phoneNo) {
+		return repo.findByPhoneNo(phoneNo);
+	}
+
+	public String updateBook(String phoneNo, UserEntity user) {
+		UserEntity existingUser = repo.findByPhoneNo(phoneNo);
+		if(existingUser!=null) {
+			existingUser.setPassword(user.getPassword());
+			existingUser.setEmail(user.getEmail());
+			existingUser.setGender(user.getGender());
+			existingUser.setName(user.getName());
+			existingUser.setPhoneNo(user.getPhoneNo());
+			repo.save(existingUser);
+			return "User successfully Updated";
+		}
+		return phoneNo;
+		
+	}
 
 }

@@ -1,8 +1,9 @@
 <!DOCTYPE>
 <html en='en' xmlns:th="http://www.thymeleaf.org">
-	<head><title>User List</title></head>
-	<body><center>
-		<h1>List of user in Library</h1>
+	<head><title>User List</title>
+	<link rel="stylesheet" th:href="@{/css/list.css}"/>
+	</head><body><center>
+		<h1>User List</h1>
 		<table>
 			<thead><tr>
 				<th>Name</th>
@@ -10,13 +11,16 @@
 				<th>Email</th>
 				<th>Password</th>
 				<th>Phone Number</th>
+				<th>Actions</th>
 				</tr></thead>
 			<tbody>
-				<tr th:each="user:${user}">
+				<tr th:each="user:${users}">
 				<td th:text="${user.name}">Name</td>
 				<td th:text="${user.gender}">Gender</td>
 				<td th:text="${user.email}">Email</td>
 				<td th:text="${user.password}">Password</td>
 				<td th:text="${user.phoneNo}">Phone Number</td>
+				<td>
+					<a th:href="@{/user/update/{phoneNo}(phoneNo=${user.phoneNo})}">Update</a></td>
 				</tr></tbody>
 				</table></center></body></html>
