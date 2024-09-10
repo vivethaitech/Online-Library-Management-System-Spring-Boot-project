@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Form</title>
+</head>
+<body>
+    <h1>Add or Update Profile</h1>
+	<form th:action="@{/user/addProfile/{userId}(userId=${userId})}" method="post">
+	    <div>
+	        <label for="address">Address:</label>
+	        <input type="text" id="address" name="address" th:value="${profile.address}" required>
+	    </div>
+	    <div>
+	        <label for="city">City:</label>
+	        <input type="text" id="city" name="city" th:value="${profile.city}" required>
+	    </div>
+	    <div>
+	        <label for="state">State:</label>
+	        <input type="text" id="state" name="state" th:value="${profile.state}" required>
+	    </div>
+	    <div>
+	        <label for="country">Country:</label>
+	        <input type="text" id="country" name="country" th:value="${profile.country}" required>
+	    </div>
+	    <div>
+	        <button type="submit">Save Profile</button>
+	    </div>
+	</form>
+
+</body>
+</html>

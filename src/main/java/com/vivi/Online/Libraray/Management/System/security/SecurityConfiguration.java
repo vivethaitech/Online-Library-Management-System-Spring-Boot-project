@@ -42,13 +42,14 @@ public class SecurityConfiguration {
 		                .requestMatchers("/book/add", "/book/post").hasRole("INCHARGE")
 		                .requestMatchers("/book/update/**").hasRole("ADMIN")
 		                .requestMatchers("/book/delete/**").hasRole("MANAGER")
-		                .requestMatchers("/user/get/").hasRole("INCHARGE")
-		                .requestMatchers("/book/post/").hasRole("INCHARGE")
+		                .requestMatchers("/user/get").hasRole("INCHARGE")
+		                .requestMatchers("/user/post").hasRole("INCHARGE")
+		                .requestMatchers("/user/update/**").hasRole("INCHARGE")
 		                .anyRequest().authenticated()
 				       .and()
 				       .formLogin()
 				       .and()
-				       .logout().logoutSuccessUrl("/")
+				       .logout().logoutSuccessUrl("/book/get")
 				       .and()
 				       .httpBasic();
 				       return http.build();

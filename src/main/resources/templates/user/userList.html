@@ -6,6 +6,7 @@
 		<h1>User List</h1>
 		<table>
 			<thead><tr>
+				<th>Id</th>
 				<th>Name</th>
 				<th>Gender</th>
 				<th>Email</th>
@@ -15,12 +16,13 @@
 				</tr></thead>
 			<tbody>
 				<tr th:each="user:${users}">
+				<td th:text="${user.id}">Name</td>
 				<td th:text="${user.name}">Name</td>
 				<td th:text="${user.gender}">Gender</td>
 				<td th:text="${user.email}">Email</td>
 				<td th:text="${user.password}">Password</td>
 				<td th:text="${user.phoneNo}">Phone Number</td>
 				<td>
-					<a th:href="@{/user/update/{phoneNo}(phoneNo=${user.phoneNo})}">Update</a></td>
+					<a th:href="@{/user/update/{id}(id=${user.id})}">Update</a></td>
 				</tr></tbody>
 				</table></center></body></html>

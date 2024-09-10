@@ -47,7 +47,7 @@ public class BookController {
         model.addAttribute("books", books);
         return "library/bookList";
     }
-
+    
 	// to add data
 	
 	@GetMapping("/add")
@@ -61,20 +61,23 @@ public class BookController {
 	
 	    @PostMapping("/post")
 	    public String addBook(@ModelAttribute @Valid BookModel bookModel,BindingResult result,Model model) {
-	    	if(result.hasErrors()) {
+	    	if(result.hasErrors()) 
+	      {
 	    		model.addAttribute("errors", result.getAllErrors());
 	    		return "library/BookFormError";
-	    	}
+	      }
 	    	Book book = new Book(bookModel.getTitle(),bookModel.getAuthor(), bookModel.getAvailable(),bookModel.getPublisher(),bookModel.getPublishedYear());
 	        logger.info("Adding book: {}", book.getTitle());
-	        try {
+	        try 
+	        {
 	            service.addBooks(book);
 	            return "library/success";
-	        } catch (AlreadyBookExistException e) {
+	        } 
+	        catch (AlreadyBookExistException e) {
 	            logger.error("Book already exists: {}", book.getTitle());
 	            return "library/alreadyError";
-	        }
 	    }
+}
 
 	// to update data
     @GetMapping("/update/{title}")

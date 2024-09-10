@@ -33,8 +33,7 @@ public class Book {
 	public Book() {
 	}
 	
-    @ManyToMany(mappedBy = "books")
-    private Set<UserEntity> users;
+
 
 	public Book(String title2, String author2, Object publisher2, Integer publishedYear2) {
 		// TODO Auto-generated constructor stub

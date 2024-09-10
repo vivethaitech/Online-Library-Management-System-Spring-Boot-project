@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.vivi.Online.Libraray.Management.System.Entity.UserEntity;
 import com.vivi.Online.Libraray.Management.System.ExceptionHandling.EmailAlreadyExist;
 import com.vivi.Online.Libraray.Management.System.service.UserService;
@@ -28,7 +27,7 @@ public class UserController {
 	public UserController(UserService service) {
 		this.service=service;
 	}
-	//get user--------------------
+//get user------------------------------------------
 	@GetMapping("/get")
 	public String getBooks(Model model) {
 		List<UserEntity> users=service.getUser();
@@ -36,7 +35,7 @@ public class UserController {
 		return "user/userList";
 	}
 	
-	//add user-------------------
+//add user-------------------------------------------
 	
 	@GetMapping("/post")
 	@PreAuthorize("hasRole('ROLE_INCHARGE')")
@@ -45,12 +44,15 @@ public class UserController {
 		model.addAttribute("user",user);
 		return "user/userForm";
 	}
+	
     @PostMapping("/post")
 	public String addUser(@ModelAttribute @Valid UserEntity user,Model model,BindingResult bind) {
-    	if(bind.hasErrors()) {
+    	
+    	if(bind.hasErrors()) 
+    	{
     		model.addAttribute("error", bind.getAllErrors());
     		return "user/UserError";
-    	}
+    	}  	
     	
     	try {
 		service.addUser(user);
@@ -59,28 +61,32 @@ public class UserController {
     	} catch(EmailAlreadyExist emailExist) {
     		return "library/error";
     	}
-	}
-    
+    	
+}
+
     //update user
-    @GetMapping("/update/{phoneNo}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String updateUserForm(@PathVariable String phoneNo, Model model) {
-    	UserEntity user = service.findByPhoneNo(phoneNo);
-    	if(user==null) {
-    		return "library/error";		
-    	}
-    	model.addAttribute("users", user);
-    	return "user/updateForm";
+    @GetMapping("/update/{id}")
+    @PreAuthorize("hasRole('ROLE_INCHARGE')")
+    public String updateUserForm(@PathVariable Long id, Model model) {
+        UserEntity user = service.findById(id); 
+        if (user == null) {
+            return "library/error";
+        }
+        model.addAttribute("user", user); 
+        return "user/updateForm";
     }
+
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable Long id, @ModelAttribute UserEntity user) {
+        try {
+            service.updateUser(id, user); 
+            return "redirect:/user/get";
+        } catch (Exception e) {
+            return "library/error";
+        }
+    }
+
     
-    @PostMapping("/update/{phoneNo}")
-    public String updateUser(@PathVariable String phoneNo, @ModelAttribute UserEntity user ) {
-    	try {
-    		service.updateBook(phoneNo,user);
-    		return "redirect:/user/get";
-    	}
-    	catch (Exception e){
-    		return "library/error";
-    	}
-    }
+    
+
 }

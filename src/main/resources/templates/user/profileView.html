@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <table>
+		<thead><tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Email</th>
+			<th>Password</th>
+			<th>Phone Number</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Country</th>
+		</tr></thead>
+		<tbody>
+			    
+				<td th:text="${user.id}">Name</td>
+				<td th:text="${user.name}">Name</td>
+				<td th:text="${user.gender}">Gender</td>
+				<td th:text="${user.email}">Email</td>
+				<td th:text="${user.password}">Password</td>
+				<td th:text="${user.phoneNo}">Phone Number</td>
+				<td th:text="${user.address}">Address</td>
+				<td th:text="${user.city}">City</td>
+				<td th:text="${user.state}">State</td>
+				<td th:text="${user.country}">Country</td>
+				</tr>			
+		</tbody>
+	</table>
+</body>
+</html>
