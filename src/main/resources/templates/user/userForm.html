@@ -5,7 +5,7 @@
     <link rel="stylesheet" th:href="@{/css/userform.css}"/>
 </head>
 <body>
-    <h1>To add new User</h1>
+    <h1>To Create Account</h1>
     <form th:action="@{/user/post}" th:object="${user}" method="post">
         <label for="name">Name</label>
         <input type="text" th:field="*{name}"><br><br>

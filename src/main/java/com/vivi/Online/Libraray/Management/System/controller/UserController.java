@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.vivi.Online.Libraray.Management.System.Entity.UserEntity;
 import com.vivi.Online.Libraray.Management.System.ExceptionHandling.EmailAlreadyExist;
 import com.vivi.Online.Libraray.Management.System.service.UserService;
@@ -38,7 +39,6 @@ public class UserController {
 //add user-------------------------------------------
 	
 	@GetMapping("/post")
-	@PreAuthorize("hasRole('ROLE_INCHARGE')")
 	public String UserForm(Model model) {
 		UserEntity user = new UserEntity();
 		model.addAttribute("user",user);
@@ -60,11 +60,10 @@ public class UserController {
 		return "user/userAdded";
     	} catch(EmailAlreadyExist emailExist) {
     		return "library/error";
-    	}
-    	
+    	}   	
 }
 
-    //update user
+ //update user--------------------------------------------
     @GetMapping("/update/{id}")
     @PreAuthorize("hasRole('ROLE_INCHARGE')")
     public String updateUserForm(@PathVariable Long id, Model model) {
@@ -85,8 +84,19 @@ public class UserController {
             return "library/error";
         }
     }
-
+//Delete user--------------------------------------------
     
-    
+    @GetMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_INCHARGE')")
+    public String deleteUser(@PathVariable Long id,Model model) {
+    	model.addAttribute("id", id);
+    	return "user/delete";
+    	
+    }
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable Long id) {
+    	service.deleteUser(id);
+    	return "redirect:/user/get";
+    }
 
 }

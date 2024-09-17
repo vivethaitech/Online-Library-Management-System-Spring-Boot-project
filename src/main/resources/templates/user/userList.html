@@ -23,6 +23,7 @@
 				<td th:text="${user.password}">Password</td>
 				<td th:text="${user.phoneNo}">Phone Number</td>
 				<td>
-					<a th:href="@{/user/update/{id}(id=${user.id})}">Update</a></td>
+					<a th:href="@{/user/update/{id}(id=${user.id})}">Update</a>
+					<a th:href="@{/user/delete/{id}(id=${user.id})}">delete</a></td>
 				</tr></tbody>
 				</table></center></body></html>

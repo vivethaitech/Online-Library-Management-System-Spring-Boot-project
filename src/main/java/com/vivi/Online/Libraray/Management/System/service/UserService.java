@@ -1,3 +1,4 @@
+
 package com.vivi.Online.Libraray.Management.System.service;
 
 import java.util.List;
@@ -55,6 +56,11 @@ public class UserService {
 	    } else {
 	        throw new IllegalArgumentException("User with id number " + id + " not found.");
 	    }
+	}
+
+	public void deleteUser(Long id) {
+		repo.deleteById(id);
+		
 	}
 
 
