@@ -35,11 +35,9 @@ public class SecurityConfiguration {
 	@Bean
 	public SecurityFilterChain filter(HttpSecurity http) throws Exception{
 		  http
-				       .csrf()
-				       .disable().authorizeHttpRequests()
-		                .requestMatchers("/book/get").permitAll()
-		                .requestMatchers("/library/welcome").permitAll()
-		                .requestMatchers("/user/post").permitAll()
+				        .csrf()
+				        .disable().authorizeHttpRequests()
+				        .requestMatchers("/book/get", "/library/welcome", "/user/post", "/borrow/submit").permitAll()
 		                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
 		                .requestMatchers("/book/add", "/book/post").hasRole("INCHARGE")
 		                .requestMatchers("/book/update/**").hasRole("ADMIN")

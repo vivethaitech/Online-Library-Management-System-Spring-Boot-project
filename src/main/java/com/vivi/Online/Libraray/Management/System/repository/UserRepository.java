@@ -8,5 +8,6 @@ import com.vivi.Online.Libraray.Management.System.Entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity,Long>{
 
+	UserEntity findByName(String name);
 
 }
